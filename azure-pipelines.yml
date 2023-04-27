@@ -17,7 +17,8 @@ stages:
     - task: AzureCLI@2
       inputs:
         azureSubscription: 'contoso-pierrc (cebd1df9-6ffd-4c75-aaac-3b76fe2c5fac)'
-        scriptType: 'batch'
+        scriptType: pscore
         scriptLocation: 'inlineScript'
-        inlineScript: 'az group create --name hello-world-nodejs-rg --location westeurope'
+        inlineScript: |
+          az --version
 
