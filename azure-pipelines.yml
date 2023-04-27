@@ -4,7 +4,7 @@ trigger:
 variables:
   rgName: 'hello-world-nodejs-rg'
   location: 'westeurope'
-  resourceSuffix: '$RANDOM'
+  resourceSuffix: '0007'
   webName: 'helloworld-nodejs-$(resourceSuffix)'
   planName: 'helloworld-nodejs-plan'
 
@@ -50,7 +50,7 @@ stages:
         inlineScript: |
           URL=$(az webapp list \
             --resource-group $(rgName) \
-            --query "[].{hostName: defaultHostName, state: state}" \
+            --query "[0].{hostName: defaultHostName}" \
             --output table)
           echo $URL
       displayName: 'Get URL App Service'      
