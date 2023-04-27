@@ -40,3 +40,15 @@ stages:
             --resource-group $(rgName) \
             --plan $(planName) \
             --runtime "node|16-lts"
+      displayName: 'App Service Deployment'
+    
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'contoso-pierrc (cebd1df9-6ffd-4c75-aaac-3b76fe2c5fac)'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az webapp list \
+            --resource-group $(rgName) \
+            --query "[].{hostName: defaultHostName, state: state}" \
+            --output table
