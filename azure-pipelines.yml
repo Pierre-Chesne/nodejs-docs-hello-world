@@ -48,7 +48,9 @@ stages:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          az webapp list \
+          URL=$(az webapp list \
             --resource-group $(rgName) \
             --query "[].{hostName: defaultHostName, state: state}" \
-            --output table
+            --output table)
+          echo $URL
+      displayName: 'Get URL App Service'      
