@@ -18,4 +18,6 @@ stages:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          az group create --name 'hello-world-nodejs-rg' --location 'westeurope'
+          az group create \
+            --name 'hello-world-nodejs-rg' \
+            --location 'westeurope'
