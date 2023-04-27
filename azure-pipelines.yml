@@ -51,6 +51,6 @@ stages:
           URL=$(az webapp list \
             --resource-group $(rgName) \
             --query "[0].{hostName: defaultHostName}" \
-            --output table)
+            --output tsv)
           echo $URL
       displayName: 'Get URL App Service'      
