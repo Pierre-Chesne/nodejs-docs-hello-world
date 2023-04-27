@@ -5,7 +5,7 @@ variables:
   rgName: 'hello-world-nodejs-rg'
   location: 'westeurope'
   resourceSuffix: $RANDOM
-  webName: 'helloworld-nodejs-${resourceSuffix}'
+  webName: 'helloworld-nodejs-$(resourceSuffix)'
   planName: 'helloworld-nodejs-plan'
 
 stages:
