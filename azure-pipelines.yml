@@ -28,3 +28,9 @@ stages:
           az group create \
             --name $(rgName) \
             --location $(location)
+          
+          az appservice plan create \
+            --name $(planName) \
+            --resource-group $(rgName) \
+            --sku B1 \
+            --is-linux
