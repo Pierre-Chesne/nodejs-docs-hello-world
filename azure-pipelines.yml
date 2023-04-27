@@ -1,25 +1,22 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
+
+
 stages:
-  - stage: AzCLI
-    displayName: Ressource Az CLI stage
-    jobs:
-      - job: AzCli
-        displayName: Ressource Az CLI
-        pool:
-          vmImage: 'ubuntu-latest'
-        steps:
-        - script:  |
-            az -v
-        
+- stage: Resources-Azure
+  displayName: Resources Azure stage
+  jobs:
+  - job: Infra
+    displayName: Infra
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
 
 
-  - 
+    - script: |
+        az -v 
+      displayName: 'az cli version'
 
 
