@@ -34,3 +34,9 @@ stages:
             --resource-group $(rgName) \
             --sku B1 \
             --is-linux
+
+          az webapp create \
+            --name $(webName) \
+            --resource-group $(rgName) \
+            --plan $(planName) \
+            --runtime "node|16-lts"
