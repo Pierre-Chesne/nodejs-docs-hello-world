@@ -1,8 +1,6 @@
 trigger:
 - main
 
-
-
 stages:
 - stage: ResourcesAzure
   displayName: Resources Azure stage
@@ -17,8 +15,7 @@ stages:
     - task: AzureCLI@2
       inputs:
         azureSubscription: 'contoso-pierrc (cebd1df9-6ffd-4c75-aaac-3b76fe2c5fac)'
-        scriptType: pscore
+        scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
           az --version
-
