@@ -1,6 +1,9 @@
 trigger:
 - main
 
+variables:
+  rgName: 'hello-world-nodejs-rg'
+  location: 'westeurope'
 stages:
 - stage: ResourcesAzure
   displayName: Resources Azure stage
@@ -19,5 +22,5 @@ stages:
         scriptLocation: 'inlineScript'
         inlineScript: |
           az group create \
-            --name 'hello-world-nodejs-rg' \
-            --location 'westeurope'
+            --name $(rgName) \
+            --location $(location)'
