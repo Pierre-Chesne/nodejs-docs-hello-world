@@ -57,6 +57,7 @@ stages:
       displayName: 'Get URL & CURL App Service'
 
 - stage: Build
+  dependsOn: []
   displayName: Build stage
   jobs:
   - job: Build
