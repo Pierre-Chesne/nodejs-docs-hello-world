@@ -53,4 +53,5 @@ stages:
             --query "[0].{hostName: defaultHostName}" \
             --output tsv)
           echo $URL
-      displayName: 'Get URL App Service'      
+          curl https://$URL
+      displayName: 'Get URL & CURL App Service'      
