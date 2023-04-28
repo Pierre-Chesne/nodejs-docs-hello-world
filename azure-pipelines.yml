@@ -92,6 +92,7 @@ stages:
 
 - stage: Deploy
   displayName: Deploy stage
+  environment: $(webName)
   dependsOn: 
     - Build
     - ResourcesAzure
