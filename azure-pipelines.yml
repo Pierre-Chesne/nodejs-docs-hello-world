@@ -97,21 +97,27 @@ stages:
     - ResourcesAzure
   condition: succeeded()
   jobs:
-  - deployment: Deploy
-    displayName: Deploy
-    environment: $(environmentName)
-    pool:
-      vmImage: 'ubuntu-latest'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: AzureWebApp@1
-            displayName: 'Azure Web App Deploy: $(webName)'
-            inputs:
-              azureSubscription: $(azureSubscription)
-              appType: webAppLinux
-              appName: $(webName)
-              runtimeStack: 'NODE|16.lts'
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-              startUpCommand: 'npm run start'      
+    - deployment: Deploy
+      displayName: Deploy
+      pool:
+        vmImage: 'ubuntu-latest'
+      
+
+  #- deployment: Deploy
+  #  displayName: Deploy
+  #  environment: $(environmentName)
+  #  pool:
+  #    vmImage: 'ubuntu-latest'
+  #  strategy:
+  #    runOnce:
+  #      deploy:
+  #        steps:
+  #        - task: AzureWebApp@1
+  #          displayName: 'Azure Web App Deploy: $(webName)'
+  #          inputs:
+  #            azureSubscription: $(azureSubscription)
+  #            appType: webAppLinux
+  #            appName: $(webName)
+  #            runtimeStack: 'NODE|16.lts'
+  #            package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+  #            startUpCommand: 'npm run start'      
