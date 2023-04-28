@@ -112,7 +112,7 @@ stages:
             inputs:
               azureSubscription: 'contoso-pierrc (cebd1df9-6ffd-4c75-aaac-3b76fe2c5fac)'
               appType: webAppLinux
-              appName: $(webAppName)
+              appName: $(webName)
               runtimeStack: 'NODE|16.lts'
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               startUpCommand: 'npm run start'
