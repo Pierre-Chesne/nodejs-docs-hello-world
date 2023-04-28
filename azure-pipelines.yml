@@ -116,3 +116,11 @@ stages:
               runtimeStack: 'NODE|16.lts'
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               startUpCommand: 'npm run start'
+
+- stage: Test
+  displayName: Test App Service
+  dependsOn: Deploy
+  condition: succeeded()
+  jobs:
+    - job: Test
+      displayName: test App Service
