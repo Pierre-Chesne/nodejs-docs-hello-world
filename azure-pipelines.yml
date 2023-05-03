@@ -107,9 +107,12 @@ stages:
       runOnce:
         deploy:
           steps:
-            - task: ManualValidation@0
-              inputs:
-                notifyUsers: 'pierrc@microsoft.com'
+
+          - task: ManualIntervention@8
+            inputs:
+              instructions: Instructions. 
+              emailRecipients: pierrc@microsoft.com
+              
 
 - stage: Deploy
   displayName: Deploy stage
