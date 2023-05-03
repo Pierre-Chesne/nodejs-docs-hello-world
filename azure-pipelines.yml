@@ -89,35 +89,13 @@ stages:
 
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
-
-- stage: Gate
-  displayName: Gate stage
-  dependsOn: 
-    - Build
-    - ResourcesAzure
-  condition: succeeded()
-  jobs:
-
-  - deployment: Gate
-    displayName: Gate
-    environment: $(webName)
-    pool:
-      vmImage: 'ubuntu-latest'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-
-          - task: ManualIntervention@8
-            inputs:
-              instructions: Instructions. 
-              emailRecipients: pierrc@microsoft.com
               
 
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: 
-   - Gate
+   - ResourcesAzure
+   - Build
 
   condition: succeeded()
   jobs:
