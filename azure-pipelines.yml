@@ -90,11 +90,36 @@ stages:
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
 
-- stage: Deploy
-  displayName: Deploy stage
+- stage: Gate
+  displayName: Gate stage
   dependsOn: 
     - Build
     - ResourcesAzure
+  condition: succeeded()
+  jobs:
+
+  - deployment: Gate
+    displayName: Gate
+    environment: $(webName)
+    pool:
+      vmImage: 'ubuntu-latest'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: ManualValidation@0
+            timeoutInMinutes: 1440 # task times out in 1 day
+            inputs:
+                notifyUsers: |
+                   pierrc@microsoft.com
+                instructions: 'Please validate the build configuration and resume'
+                onTimeout: 'resume'          
+
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: 
+   - Gate
+
   condition: succeeded()
   jobs:
 
