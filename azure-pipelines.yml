@@ -151,6 +151,5 @@ stages:
               --resource-group $(rgName) \
               --query "[0].{hostName: defaultHostName}" \
               --output tsv)
-            echo $URL
-            curl https://$URL
+            curl https://$URL/api/accounts/test
         displayName: 'Get URL & CURL App Service'
