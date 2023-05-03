@@ -139,7 +139,7 @@ stages:
   condition: succeeded()
   jobs:
     - job: Test
-      displayName: Test App Service
+      displayName: Test App Service stage
       steps:
       - task: AzureCLI@2
         inputs:
@@ -151,9 +151,9 @@ stages:
               --resource-group $(rgName) \
               --query "[0].{hostName: defaultHostName}" \
               --output tsv)
-            curl https://$URL/api/accounts/test
-        displayName: 'Get URL & CURL App Service'
+        displayName: 'Get URL '
        
       - script: |
-          curl https://$URL/api/accounts/test
+          echo $URL
+          curl 'https://$URL/api/accounts/test'
         displayName: 'Test App Service'
