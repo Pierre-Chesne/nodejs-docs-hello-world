@@ -97,6 +97,7 @@ stages:
     - ResourcesAzure
   condition: succeeded()
   jobs:
+
   - deployment: Deploy
     displayName: Deploy
     environment: $(webName)
@@ -106,7 +107,17 @@ stages:
       runOnce:
         deploy:
           steps:
-           
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: 'contoso-pierrc (cebd1df9-6ffd-4c75-aaac-3b76fe2c5fac)'
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                az webapp list \
+                  --resource-group $rgName \
+                  --query "[].{hostName: defaultHostName, state: state}" \
+                  --output table
+                                 
           - task: AzureWebApp@1
             displayName: 'Azure Web App Deploy'
             inputs:
