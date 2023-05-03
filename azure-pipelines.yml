@@ -107,13 +107,9 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: ManualValidation@0
-            timeoutInMinutes: 1440 # task times out in 1 day
-            inputs:
-                notifyUsers: |
-                   pierrc@microsoft.com
-                instructions: 'Please validate the build configuration and resume'
-                onTimeout: 'resume'          
+            - task: ManualValidation@0
+              inputs:
+                notifyUsers: 'pierrc@microsoft.com'
 
 - stage: Deploy
   displayName: Deploy stage
