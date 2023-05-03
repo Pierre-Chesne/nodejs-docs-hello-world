@@ -139,7 +139,7 @@ stages:
   condition: succeeded()
   jobs:
     - job: Test
-      displayName: test App Service
+      displayName: Test App Service
       steps:
       - task: AzureCLI@2
         inputs:
@@ -153,3 +153,7 @@ stages:
               --output tsv)
             curl https://$URL/api/accounts/test
         displayName: 'Get URL & CURL App Service'
+       
+      - script: |
+          curl https://$URL/api/accounts/test
+        displayName: 'Test App Service'
