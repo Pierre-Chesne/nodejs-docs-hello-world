@@ -134,13 +134,14 @@ stages:
               startUpCommand: 'npm run start'
 
 - stage: Test
-  displayName: Test App Service
+  displayName: Test App Service stage
   dependsOn: Deploy
   condition: succeeded()
   jobs:
     - job: Test
-      displayName: Test App Service stage
+      displayName: Test App Service
       steps:
+
       - task: AzureCLI@2
         inputs:
           azureSubscription: 'contoso-pierrc (cebd1df9-6ffd-4c75-aaac-3b76fe2c5fac)'
@@ -151,9 +152,8 @@ stages:
               --resource-group $(rgName) \
               --query "[0].{hostName: defaultHostName}" \
               --output tsv)
-        displayName: 'Get URL '
+            echo $URL
+            curl https://$URL
+        displayName: 'Get URL & CURL App Service'
+
        
-      - script: |
-          echo $URL
-          curl 'https://$URL/api/accounts/test'
-        displayName: 'Test App Service'
