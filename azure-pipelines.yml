@@ -124,3 +124,17 @@ stages:
   jobs:
     - job: Test
       displayName: test App Service
+      steps:
+      - task: AzureCLI@2
+        inputs:
+          azureSubscription: 'contoso-pierrc (cebd1df9-6ffd-4c75-aaac-3b76fe2c5fac)'
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            URL=$(az webapp list \
+              --resource-group $(rgName) \
+              --query "[0].{hostName: defaultHostName}" \
+              --output tsv)
+            echo $URL
+            curl https://$URL
+        displayName: 'Get URL & CURL App Service'
